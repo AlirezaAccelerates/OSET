@@ -6,9 +6,9 @@ function [peaks, peak_indexes] = peak_det_simple(x, ff, flag, varargin)
 %
 %   Inputs:
 %       x: Vector of input data
-%       ff: Approximate ECG beat-rate in Hertz
+%       ff: A rough estimate of the heart rate in Hz. For example, for 72 beats per minute ff = 72/60=1.2 
 %       flag: Search for positive (flag=1), negative (flag=0) peaks, or
-%           automatically using the polarity according to the dominant
+%           automatically (flag=2) using the polarity according to the dominant
 %           peak/nadir median absolute amplitude
 %       omit_close_peaks: omit close peaks after main peak detection
 %           (true/1) or not(false/0). Default is 0
