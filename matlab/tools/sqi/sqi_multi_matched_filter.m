@@ -1,14 +1,14 @@
-function [score1, score2, peaks1, peaks2, rank1, rank2] = sqi_multi_matched_filter(x,f,fs, varargin)
+function [score1, score2, peaks1, peaks2, rank1, rank2] = sqi_multi_matched_filter(x,ff,fs, varargin)
 % sqi_multi_matched_filter - Signal quality index based on three fixed
 %   template matched filter output envelope scatter and average waveform standard
 %   deviation
 %
 % Usage:
-%   [score1, score2, peaks1, peaks2, rank1, rank2] = sqi_multi_matched_filter(x, f, fs, num_peak_det_itr, template_type, template_params, plot_templates)
+%   [score1, score2, peaks1, peaks2, rank1, rank2] = sqi_multi_matched_filter(x, ff, fs, num_peak_det_itr, template_type, template_params, plot_templates)
 %
 % Inputs:
 %   x: Input data array (channels x samples).
-%   f: A rough estimate of the heart rate in Hz. For example, for 72 beats per minute f = 72/60=1.2 
+%   ff: A rough estimate of the heart rate in Hz. For example, for 72 beats per minute ff = 72/60=1.2 
 %   fs: Sampling frequency.
 %   num_peak_det_itr (optional): Number of iterations for peak
 %       detection (default: 1). 
@@ -152,7 +152,7 @@ for i = 1:L
     r = sqrt(r1.^2 + r2.^2 + r3.^2);
 
     % Find the local peaks of the power envelope
-    ppeaks(i, :) = peak_det_local_search(r, f/fs, 1, num_peak_det_itr);
+    ppeaks(i, :) = peak_det_local_search(r, ff/fs, 1, num_peak_det_itr);
 
     % Combine all nearby peaks to form a pulse corresponding to the R-peak of length LL (widest template width)
     LL = max([L1 L2 L3]);
